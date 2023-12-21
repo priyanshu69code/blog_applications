@@ -6,7 +6,7 @@ from .forms import BlogForm
 from .models import Blog
 from django.shortcuts import render, get_object_or_404
 
-# Create your views here.
+@login_required(login_url='login/')
 def home(request):
     # Retrieve 10 or less recent blog posts
     recent_posts = Blog.objects.order_by('-time_creation')[:10]

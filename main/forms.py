@@ -6,5 +6,5 @@ class BlogForm(forms.ModelForm):
         model = Blog
         fields = ['title', 'body']
         widgets = {
-            'body': forms.Textarea(attrs={'rows': 500}),  # Adjust the number of rows as needed
+            'body': forms.Textarea(attrs={'rows': 1000}),  # Adjust the number of rows as needed
         }
