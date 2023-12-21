@@ -3,12 +3,15 @@
 {% include 'main/nav.html' %}
 
 <div class="container mt-5">
-    {% for post in recent_posts %}
+    <h2 class="mb-4">Your Blog Posts</h2>
+    {% for post in user_posts %}
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">{{ post.title|safe }}</h5>
-                <p class="card-text">{{ post.body|truncatechars:100|safe }}</p>
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.body|safe|truncatechars:200 }}</p>
                 <a href="{% url 'view_blog_post' blog_id=post.blog_id %}" class="btn btn-primary">Read More</a>
+                <a href="{% url 'edit_post' post.blog_id %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'delete_post' post.blog_id %}" class="btn btn-danger">Delete</a>
             </div>
             <div class="card-footer text-muted bg-light">
                 Author: {{ post.author.username }} | Created on: {{ post.time_creation|date:"F d, Y" }}

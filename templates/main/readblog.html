@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% include 'main/nav.html' %}
+
+<div class="container mt-5 d-flex justify-content-center align-items-center">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title mb-9">{{ blog_post.title|safe }}</h1>
+            <p class="card-text text-left">{{ blog_post.body|safe }}</p>
+        </div>
+        <div class="card-footer text-muted bg-light">
+            Author: {{ blog_post.author.username }} | Created on: {{ blog_post.time_creation|date:"F d, Y" }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

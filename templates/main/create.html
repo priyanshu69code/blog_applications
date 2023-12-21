@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% include 'main/nav.html' %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" action="{% url 'create' %}" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <h2 class="mb-4">Create Blog</h2>
+
+                        <!-- Title Field -->
+                        <div class="form-group">
+                            {{ form.title.label_tag }}
+                            {{ form.title }}
+                            <div class="invalid-feedback">
+                                Please provide a title.
+                            </div>
+                        </div>
+
+                        <!-- Body Field -->
+                        <div class="form-group">
+                            {{ form.body.label_tag }}
+                            {{ form.body }}
+                            <div class="invalid-feedback">
+                                Please provide the content of your blog.
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Create Blog</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    CKEDITOR.replace('id_body');
+</script>
+
+{% endblock %}
