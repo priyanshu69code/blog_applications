@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form id="signupForm" method="post" action="{% url 'signup' %}" onsubmit="return validatePassword()">
+                {% csrf_token %}  <!-- Add this line to include the CSRF token -->
+                <h2 class="mb-4">Sign Up</h2>
+
+                <!-- Username Field -->
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <input type="checkbox" onclick="showPassword()"> Show
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+
+                <!-- Password Match Error Message -->
+                <p id="passwordMatchError" class="text-danger mt-2"></p>
+
+                <!-- Already have an account? Redirect to login -->
+                <p class="mt-3">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    function validatePassword() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        
+        if (password !== confirmPassword) {
+            document.getElementById("passwordMatchError").innerHTML = "Passwords do not match.";
+            return false;
+        } else {
+            document.getElementById("passwordMatchError").innerHTML = "";
+            return true;
+        }
+    }
+
+    function showPassword() {
+        var passwordField = document.getElementById("password");
+        var confirmPasswordField = document.getElementById("confirmPassword");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            confirmPasswordField.type = "text";
+        } else {
+            passwordField.type = "password";
+            confirmPasswordField.type = "password";
+        }
+    }
+</script>
+
+</body>
+</html>

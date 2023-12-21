@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: transparent !important; border-bottom: none;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-black" href="{% url 'home' %}">Image captionar v1.0</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-black"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active text-black" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="{% url 'home' %}">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="{% url 'home' %}">Edit</a>
+                </li>
+                <li class="nav-item">
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link text-black">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
